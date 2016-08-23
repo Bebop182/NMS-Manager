@@ -1,0 +1,41 @@
+﻿<Window x:Class="NoMansSkyManager.Views.ApplicationShell"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:prism="http://prismlibrary.com/"
+        prism:ViewModelLocator.AutoWireViewModel="True"
+        Title="{Binding Title}" Height="600" Width="500" ResizeMode="NoResize">
+
+    <Grid Name="LayoutRoot">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        
+        <Grid Name="Header">
+            <Image Source="../UI/Images/No-Mans-Sky-.jpg" />
+
+            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#333"  FontSize="34" Text="{Binding Title}">
+                <TextBlock.Effect>
+                    <BlurEffect Radius="2"></BlurEffect>
+                </TextBlock.Effect>
+            </TextBlock>
+        </Grid>
+
+        <Grid Grid.Row="1" Name="Content" Style="{StaticResource ContentRoot}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="2*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            
+            <ContentControl Grid.Row="0" prism:RegionManager.RegionName="FirstSlotRegion" />
+            <Separator Grid.Row="1" Margin="0,10" Foreground="#ccc" />
+            <ContentControl Grid.Row="2" prism:RegionManager.RegionName="SecondSlotRegion" />
+            
+            <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button MinWidth="150" Command="{Binding RequestLaunchCommand}">LAUNCH</Button>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>

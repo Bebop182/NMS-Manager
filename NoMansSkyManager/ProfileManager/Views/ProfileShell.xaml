@@ -1,0 +1,33 @@
+﻿<UserControl x:Class="ProfileManager.Views.ProfileShell"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:prism="http://prismlibrary.com/"             
+             prism:ViewModelLocator.AutoWireViewModel="True">
+    <Grid>
+        <Grid.Resources>
+            <ResourceDictionary Source="../DataTemplates/PlayerProfileTemplates.xaml" />
+        </Grid.Resources>
+        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Grid.ColumnSpan="2" TextDecorations="Underline"  Text="Profiles" FontSize="20" Margin="0,0,0,5" />
+        
+        <ListBox Name="ProfileList" Grid.Row="1"
+                 ItemsSource="{Binding PlayerProfiles}" SelectedItem="{Binding SelectedProfile}"
+                 ItemTemplate="{StaticResource PlayerProfileTemplate}"/>
+
+        <StackPanel Name="ActionPanel" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center">
+            <Button Command="{Binding AddProfileCommand}">Add</Button>
+            <Button Command="{Binding RemoveProfileCommand}">Delete</Button>
+            <!--<Button Command="{Binding MakeProfileActiveCommand}">Make Active</Button>-->
+        </StackPanel>
+    </Grid>
+</UserControl>

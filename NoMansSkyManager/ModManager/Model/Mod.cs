@@ -1,30 +1,26 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 
-namespace ModManager.Model {
+namespace NMSM.ModManager.Model {
     public class Mod {
-        public string Name { get; set; }
+        public bool Enabled { get; set; }
+        public string DisplayName { get; set; }
+        public string FileName { get { return ModFile.Name; } }
         public DateTime CreationDate { get; set; }
         public FileInfo ModFile { get; }
 
-        public Mod() {
+        private Mod()
+        {
+            Enabled = false;
             CreationDate = DateTime.Now;
             ModFile = null;
-        }
-
-        public Mod(string profilePath) : this()
-        {
-            //ModFile = Directory.CreateDirectory(profilePath);
         }
 
         public Mod(FileInfo modFile) : this()
         {
             ModFile = modFile;
-            Name = Path.GetFileNameWithoutExtension(modFile.Name);
-        }
-
-        public void Delete() {
-            ModFile.Delete();
+            DisplayName = Path.GetFileNameWithoutExtension(modFile.Name).TrimStart('_');
         }
     }
 }

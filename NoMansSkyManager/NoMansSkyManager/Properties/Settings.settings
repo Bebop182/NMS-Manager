@@ -1,7 +1,15 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
-<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)">
-  <Profiles>
-    <Profile Name="(Default)" />
-  </Profiles>
-  <Settings />
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="NMSM.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="NMSInstallDirectory" Type="System.String" Scope="User">
+      <Value Profile="(Default)">D:\GOG Games\No Man's Sky</Value>
+    </Setting>
+    <Setting Name="NMSSavesDirectory" Type="System.String" Scope="User">
+      <Value Profile="(Default)">\HelloGames\NMS</Value>
+    </Setting>
+    <Setting Name="NMSGameDataRelativePath" Type="System.String" Scope="User">
+      <Value Profile="(Default)">\GAMEDATA\PCBANKS</Value>
+    </Setting>
+  </Settings>
 </SettingsFile>

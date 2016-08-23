@@ -1,39 +1,31 @@
-﻿using Prism.Modularity;
-using Prism.Regions;
-using System.Windows;
-using Microsoft.Practices.Unity;
-using ModManager.Properties;
-using ModManager.Views;
+﻿using System.Windows;
+using NMSM.ModManager.Views;
 using NoMansSkyManager.Infrastructure;
 using Prism.Events;
+using Prism.Modularity;
 
-namespace ModManager {
+namespace NMSM.ModManager {
     public class ModManagerModule : IModule {
-        protected readonly IRegionManager RegionManager;
-        protected readonly IEventAggregator EventAggregator;
-        protected readonly IUnityContainer UnityContainer;
+        private readonly IEventAggregator _eventAggregator;
 
-        public ModManagerModule(IUnityContainer unityContainer, IRegionManager regionManager, IEventAggregator eventAggregator) {
-            RegionManager = regionManager;
-            EventAggregator = eventAggregator;
-            UnityContainer = unityContainer;
+        public ModManagerModule(IEventAggregator eventAggregator) {
+            _eventAggregator = eventAggregator;
         }
 
-        public virtual void Initialize() {
+        public void Initialize() {
             // Notify main application that module is ready to be displayed
             var moduleEvent = new ModuleLoadedEvent() {
                 ModuleType = this.GetType(),
                 EntryPointView = typeof(ModManagerShell)
             };
 
-            EventAggregator.GetEvent<ModuleLoadedEvent>().Publish(moduleEvent);
+            _eventAggregator.GetEvent<ModuleLoadedEvent>().Publish(moduleEvent);
 
-            Application.Current.Exit += OnExit;
+            //Application.Current.Exit += OnExit;
         }
 
-        protected void OnExit(object sender, ExitEventArgs exitEventArgs) {
-            // Save settings
-            Settings.Default.Save();
+        private void OnExit(object sender, ExitEventArgs exitEventArgs) {
+
         }
     }
 }

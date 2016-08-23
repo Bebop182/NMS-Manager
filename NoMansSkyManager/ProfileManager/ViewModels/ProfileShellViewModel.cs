@@ -1,16 +1,16 @@
 ﻿using System;
-using Prism.Mvvm;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Windows.Input;
-using Prism.Commands;
-using ProfileManager.Model;
 using System.IO;
 using System.IO.Compression;
+using System.Linq;
+using System.Windows.Input;
+using NMSM.ProfileManager.Model;
 using NoMansSkyManager.Infrastructure;
+using Prism.Commands;
 using Prism.Events;
+using Prism.Mvvm;
 
-namespace ProfileManager.ViewModels {
+namespace NMSM.ProfileManager.ViewModels {
     public class ProfileShellViewModel : BindableBase {
         private int _profileNextIndex;
 
@@ -86,6 +86,7 @@ namespace ProfileManager.ViewModels {
             var profile = PlayerProfiles.FirstOrDefault(p => !string.IsNullOrEmpty(lastActiveProfile) && p.Name.Equals(lastActiveProfile));
 
             ActivePlayerProfile = profile ?? PlayerProfiles.Last();
+            SelectedProfile = ActivePlayerProfile;
         }
 
         private void OnRequestLaunch()
@@ -147,7 +148,7 @@ namespace ProfileManager.ViewModels {
 
             // Zip NMSDataDirectory into current active profile
             try {
-                ZipFile.CreateFromDirectory(_context.NMSDataDirectory.FullName, ActivePlayerProfile.ProfileDirectory.FullName + zipFilepath);
+                ZipFile.CreateFromDirectory(_context.NMSSavesDirectory.FullName, ActivePlayerProfile.ProfileDirectory.FullName + zipFilepath);
             }
             catch (Exception e) {
                 Console.WriteLine(e.Message);
@@ -155,14 +156,14 @@ namespace ProfileManager.ViewModels {
             }
 
             // Clean NMSDataDirectory
-            CleanDirectory(_context.NMSDataDirectory);
+            CleanDirectory(_context.NMSSavesDirectory);
 
             // Change ActivePlayerProfile
             ActivePlayerProfile = SelectedProfile;
 
             // Unzip selected profile into NMSDataDirectory
             try {
-                ZipFile.ExtractToDirectory(ActivePlayerProfile.ProfileDirectory.FullName + zipFilepath, _context.NMSDataDirectory.FullName);
+                ZipFile.ExtractToDirectory(ActivePlayerProfile.ProfileDirectory.FullName + zipFilepath, _context.NMSSavesDirectory.FullName);
             }
             catch (Exception e) {
                 Console.WriteLine(e.Message);

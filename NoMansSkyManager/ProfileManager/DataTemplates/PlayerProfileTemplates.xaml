@@ -1,7 +1,6 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:local="clr-namespace:ProfileManager.DataTemplates"
-                    xmlns:model="clr-namespace:ProfileManager.Model">
+                    xmlns:model="clr-namespace:NMSM.ProfileManager.Model">
     <DataTemplate x:Key="PlayerProfileTemplate" DataType="{x:Type model:PlayerProfile}">
         <TextBlock Text="{Binding Name}" />
     </DataTemplate>

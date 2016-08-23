@@ -1,6 +1,6 @@
 ﻿using System.Windows.Controls;
 
-namespace ProfileManager.Views {
+namespace NMSM.ProfileManager.Views {
     /// <summary>
     /// Interaction logic for ProfileShell
     /// </summary>

@@ -1,37 +1,31 @@
 ﻿using System.Windows;
-using Microsoft.Practices.Unity;
-using Prism.Regions;
+using NMSM.ProfileManager.Properties;
+using NMSM.ProfileManager.Views;
 using NoMansSkyManager.Infrastructure;
 using Prism.Events;
 using Prism.Modularity;
-using ProfileManager.Properties;
-using ProfileManager.Views;
 
-namespace ProfileManager {
+namespace NMSM.ProfileManager {
     public class ProfileManagerModule : IModule {
-        protected readonly IRegionManager RegionManager;
-        protected readonly IEventAggregator EventAggregator;
-        protected readonly IUnityContainer UnityContainer;
+        private readonly IEventAggregator _eventAggregator;
 
-        public ProfileManagerModule(IUnityContainer unityContainer, IRegionManager regionManager, IEventAggregator eventAggregator) {
-            RegionManager = regionManager;
-            EventAggregator = eventAggregator;
-            UnityContainer = unityContainer;
+        public ProfileManagerModule(IEventAggregator eventAggregator) {
+            _eventAggregator = eventAggregator;
         }
 
-        public virtual void Initialize() {
+        public void Initialize() {
             // Notify main application that module is ready to be displayed
             var moduleEvent = new ModuleLoadedEvent() {
                 ModuleType = this.GetType(),
                 EntryPointView = typeof(ProfileShell)
             };
 
-            EventAggregator.GetEvent<ModuleLoadedEvent>().Publish(moduleEvent);
+            _eventAggregator.GetEvent<ModuleLoadedEvent>().Publish(moduleEvent);
 
             Application.Current.Exit += OnExit;
         }
 
-        protected void OnExit(object sender, ExitEventArgs exitEventArgs) {
+        private void OnExit(object sender, ExitEventArgs exitEventArgs) {
             // Save settings
             Settings.Default.Save();
         }

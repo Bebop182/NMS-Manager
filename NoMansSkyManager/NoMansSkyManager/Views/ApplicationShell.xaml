@@ -1,4 +1,4 @@
-﻿<Window x:Class="NoMansSkyManager.Views.ApplicationShell"
+﻿<Window x:Class="NMSM.Views.ApplicationShell"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:prism="http://prismlibrary.com/"
@@ -10,16 +10,18 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        
-        <Grid Name="Header">
-            <Image Source="../UI/Images/No-Mans-Sky-.jpg" />
+        <Border BorderThickness="1" BorderBrush="Black">
+            <Grid Name="Header">
+                <Image Source="../UI/Images/No-Mans-Sky-.jpg" />
 
-            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#333"  FontSize="34" Text="{Binding Title}">
-                <TextBlock.Effect>
-                    <BlurEffect Radius="2"></BlurEffect>
-                </TextBlock.Effect>
-            </TextBlock>
-        </Grid>
+                <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#333"  FontSize="34" Text="{Binding Title}">
+                    <TextBlock.Effect>
+                        <BlurEffect Radius="2"></BlurEffect>
+                    </TextBlock.Effect>
+                </TextBlock>
+            </Grid>
+        </Border>
+        
 
         <Grid Grid.Row="1" Name="Content" Style="{StaticResource ContentRoot}">
             <Grid.RowDefinitions>

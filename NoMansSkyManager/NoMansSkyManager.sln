@@ -1,19 +1,21 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NoMansSkyManager", "NoMansSkyManager\NoMansSkyManager.csproj", "{99C9E82C-C594-446D-AA59-8FFBC43AD226}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Modules", "Modules", "{C2E4F36A-DBBD-4CC8-95E5-C9346D145D36}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProfileManager", "ProfileManager\ProfileManager.csproj", "{AB8B448C-DD74-4D60-A041-3E5D03A32180}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NMSM.ProfileManager", "ProfileManager\NMSM.ProfileManager.csproj", "{AB8B448C-DD74-4D60-A041-3E5D03A32180}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Commons", "Commons", "{6C69C5A7-8959-4E10-BFCE-6C3E73E63141}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NoMansSkyManager.Infrastructure", "NoMansSkyManager.Infrastructure\NoMansSkyManager.Infrastructure.csproj", "{9CB8A988-B202-4979-A421-A2F6AE8FA298}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModManager", "ModManager\ModManager.csproj", "{B413758C-540B-4602-B1F3-174688823A7C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NMSM.ModManager", "ModManager\NMSM.ModManager.csproj", "{B413758C-540B-4602-B1F3-174688823A7C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NMSM.ControlLibrary", "NMSM.ControlLibrary\NMSM.ControlLibrary.csproj", "{2D53BC59-5999-4804-8BE9-539377617320}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -37,6 +39,10 @@ Global
 		{B413758C-540B-4602-B1F3-174688823A7C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B413758C-540B-4602-B1F3-174688823A7C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B413758C-540B-4602-B1F3-174688823A7C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2D53BC59-5999-4804-8BE9-539377617320}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2D53BC59-5999-4804-8BE9-539377617320}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2D53BC59-5999-4804-8BE9-539377617320}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2D53BC59-5999-4804-8BE9-539377617320}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -45,5 +51,6 @@ Global
 		{AB8B448C-DD74-4D60-A041-3E5D03A32180} = {C2E4F36A-DBBD-4CC8-95E5-C9346D145D36}
 		{9CB8A988-B202-4979-A421-A2F6AE8FA298} = {6C69C5A7-8959-4E10-BFCE-6C3E73E63141}
 		{B413758C-540B-4602-B1F3-174688823A7C} = {C2E4F36A-DBBD-4CC8-95E5-C9346D145D36}
+		{2D53BC59-5999-4804-8BE9-539377617320} = {6C69C5A7-8959-4E10-BFCE-6C3E73E63141}
 	EndGlobalSection
 EndGlobal

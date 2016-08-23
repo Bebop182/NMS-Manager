@@ -7,7 +7,7 @@
     <ProjectGuid>{99C9E82C-C594-446D-AA59-8FFBC43AD226}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>NoMansSkyManager</RootNamespace>
+    <RootNamespace>NMSM</RootNamespace>
     <AssemblyName>NoMansSkyManager</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -126,7 +126,7 @@
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
+      <Generator>PublicSettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
@@ -136,17 +136,21 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ModManager\ModManager.csproj">
+    <ProjectReference Include="..\ModManager\NMSM.ModManager.csproj">
       <Project>{b413758c-540b-4602-b1f3-174688823a7c}</Project>
-      <Name>ModManager</Name>
+      <Name>NMSM.ModManager</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NMSM.ControlLibrary\NMSM.ControlLibrary.csproj">
+      <Project>{2D53BC59-5999-4804-8BE9-539377617320}</Project>
+      <Name>NMSM.ControlLibrary</Name>
     </ProjectReference>
     <ProjectReference Include="..\NoMansSkyManager.Infrastructure\NoMansSkyManager.Infrastructure.csproj">
       <Project>{9cb8a988-b202-4979-a421-a2f6ae8fa298}</Project>
       <Name>NoMansSkyManager.Infrastructure</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ProfileManager\ProfileManager.csproj">
+    <ProjectReference Include="..\ProfileManager\NMSM.ProfileManager.csproj">
       <Project>{ab8b448c-dd74-4d60-a041-3e5d03a32180}</Project>
-      <Name>ProfileManager</Name>
+      <Name>NMSM.ProfileManager</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

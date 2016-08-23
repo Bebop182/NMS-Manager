@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="ProfileManager.Views.ProfileShell"
+﻿<UserControl x:Class="NMSM.ProfileManager.Views.ProfileShell"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:prism="http://prismlibrary.com/"             

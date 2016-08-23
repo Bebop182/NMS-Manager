@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 
-namespace ProfileManager.Model {
+namespace NMSM.ProfileManager.Model {
     public class PlayerProfile {
         public string Name { get; set; }
         public DateTime CreationDate { get; set; }

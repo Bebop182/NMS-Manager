@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace NoMansSkyManager.Views {
+namespace NMSM.Views {
     /// <summary>
     /// Interaction logic for ApplicationShell.xaml
     /// </summary>

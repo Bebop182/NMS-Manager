@@ -1,7 +1,6 @@
-﻿using System.Windows;
-using System.Windows.Controls;
+﻿using System.Windows.Controls;
 
-namespace ModManager.Views {
+namespace NMSM.ModManager.Views {
     /// <summary>
     /// Interaction logic for ModManagerShell.xaml
     /// </summary>

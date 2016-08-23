@@ -1,8 +1,18 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:local="clr-namespace:ModManager.DataTemplates"
-                    xmlns:model="clr-namespace:ModManager.Model">
+                    xmlns:model="clr-namespace:NMSM.ModManager.Model">
     <DataTemplate x:Key="ModTemplate" DataType="{x:Type model:Mod}">
-        <TextBlock Text="{Binding Name}" />
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <CheckBox Margin="0,0,10,0" VerticalAlignment="Center"  IsChecked="{Binding Enabled, Mode=TwoWay}" />
+            <TextBlock Grid.Column="1" TextAlignment="Center" Text="{Binding DisplayName}" />
+        </Grid>
+    </DataTemplate>
+
+    <DataTemplate x:Key="ModCollectionTemplate">
+        <TextBlock Text="{Binding Key}" />
     </DataTemplate>
 </ResourceDictionary>

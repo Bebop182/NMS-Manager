@@ -5,9 +5,9 @@ namespace NoMansSkyManager.Infrastructure.Helpers {
         [DllImport("kernel32.dll")]
         private static extern bool CreateSymbolicLink(string lpSymlinkFileName, string lpTargetFileName, int dwFlags);
 
-        public static bool CreateSymbolicLink(string sourcePath, string targetPath, bool isDirectory)
+        public static bool CreateSymbolicLink(string targetPath, string sourcePath, bool isDirectory)
         {
-            return CreateSymbolicLink(sourcePath, targetPath, isDirectory ? 1 : 0);
+            return CreateSymbolicLink(targetPath, sourcePath, isDirectory ? 1 : 0);
         }
     }
 }

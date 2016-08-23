@@ -55,7 +55,8 @@ namespace ModManager.ViewModels {
             // Copy Mods To gamefolder
             foreach (var mod in EnabledMods)
             {
-                SymLink.CreateSymbolicLink(mod.ModFile.FullName, installPath + @"\_" + mod.ModFile.Name, false);
+                
+                //SymLink.CreateSymbolicLink(installPath + @"\_" + mod.ModFile.Name, mod.ModFile.FullName, false);
             }
         }
 

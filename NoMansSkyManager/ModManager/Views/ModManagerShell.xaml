@@ -10,7 +10,7 @@
                 <ResourceDictionary Source="../UI/DataTemplates/ModTemplate.xaml" />
                 <ResourceDictionary Source="../UI/Styles/ModManagerStyles.xaml" />
             </ResourceDictionary.MergedDictionaries>
-
+            
             <Style TargetType="Label" BasedOn="{StaticResource ContentTitle}"></Style>
         </ResourceDictionary>
 
@@ -53,12 +53,13 @@
                 <Label HorizontalAlignment="Center">Available Mods</Label>
                 <ListBox Grid.Row="1"
                          ItemsSource="{Binding SelectedModCollection.Value}"
+                         SelectedItem="{Binding SelectedMod}"
                          ItemTemplate="{StaticResource ModTemplate}" />
             </Grid>
 
             <StackPanel Name="PriorityPanel" Grid.Column="2" VerticalAlignment="Center">
-                <Button Content="^" />
-                <Button Content="v" />
+                <Button Content="^" Command="{Binding IncreaseModPriorityCommand}" />
+                <Button Content="v" Command="{Binding DecreaseModPriorityCommand}" />
             </StackPanel>
         </Grid>
 

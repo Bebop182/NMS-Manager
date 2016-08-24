@@ -1,6 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
+using System.Text.RegularExpressions;
 
 namespace NMSM.ModManager.Model {
     public class Mod {
@@ -20,7 +20,8 @@ namespace NMSM.ModManager.Model {
         public Mod(FileInfo modFile) : this()
         {
             ModFile = modFile;
-            DisplayName = Path.GetFileNameWithoutExtension(modFile.Name).TrimStart('_');
+            var name = Path.GetFileNameWithoutExtension(modFile.Name).TrimStart('_');
+            DisplayName = Regex.Replace(name, @"^_?[0-9]_", "");
         }
     }
 }

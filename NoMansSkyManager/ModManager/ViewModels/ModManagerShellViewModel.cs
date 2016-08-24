@@ -1,8 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
+using System.Windows;
 using System.Windows.Input;
+using Newtonsoft.Json;
 using NMSM.Infrastructure;
 using NMSM.ModManager.Model;
 using Prism.Commands;
@@ -14,13 +18,18 @@ namespace NMSM.ModManager.ViewModels
     public class ModManagerShellViewModel : BindableBase
     {
         #region Properties
-        public ObservableDictionary<string, IEnumerable<Mod>> ModCollections
+        public Mod SelectedMod
+        {
+            get { return _selectedMod; }
+            set { SetProperty(ref _selectedMod, value);}
+        }
+        public ObservableDictionary<string, ObservableCollection<Mod>> ModCollections
         {
             get { return _modCollections; }
             set { SetProperty(ref _modCollections, value); }
         }
 
-        public KeyValuePair<string, IEnumerable<Mod>> SelectedModCollection
+        public KeyValuePair<string, ObservableCollection<Mod>> SelectedModCollection
         {
             get { return _selectedModCollection; }
             set { SetProperty(ref _selectedModCollection, value); }
@@ -30,6 +39,9 @@ namespace NMSM.ModManager.ViewModels
         #region Commands
         public ICommand AddModCollectionCommand { get; set; }
         public ICommand RemoveModCollectionCommand { get; set; }
+
+        public ICommand IncreaseModPriorityCommand { get; set; }
+        public ICommand DecreaseModPriorityCommand { get; set; }
         #endregion
 
         #region Private attributes
@@ -38,8 +50,9 @@ namespace NMSM.ModManager.ViewModels
 
         private int _collectionNextIndex = 0;
         private List<FileInfo> _modFiles;
-        private ObservableDictionary<string, IEnumerable<Mod>> _modCollections;
-        private KeyValuePair<string, IEnumerable<Mod>> _selectedModCollection;
+        private Mod _selectedMod;
+        private ObservableDictionary<string, ObservableCollection<Mod>> _modCollections;
+        private KeyValuePair<string, ObservableCollection<Mod>> _selectedModCollection;
         #endregion
 
         #region Constructor
@@ -48,18 +61,49 @@ namespace NMSM.ModManager.ViewModels
             _context = context;
             _eventAggregator = eventAggregator;
 
-            LoadModList();
-            ModCollections = new ObservableDictionary<string, IEnumerable<Mod>>
+            LoadModFiles();
+            LoadModCollections();
+            if (ModCollections == null)
             {
-                {"Collection #1", _modFiles.ConvertAll(file => new Mod(file))},
-            };
-
+                ModCollections = new ObservableDictionary<string, ObservableCollection<Mod>>();
+            }
+            if (!ModCollections.Any())
+            {
+                ModCollections.Add("Collection #1", new ObservableCollection<Mod>(_modFiles.ConvertAll(file => new Mod(file))));
+            }
+            
             SelectedModCollection = ModCollections.First();
 
             AddModCollectionCommand = new DelegateCommand<string>(ExecuteAddModCollection);
             RemoveModCollectionCommand = new DelegateCommand(ExecuteRemoveModuleCollection);
 
+            IncreaseModPriorityCommand = new DelegateCommand(ExecuteIncreaseModPriority);
+            DecreaseModPriorityCommand = new DelegateCommand(ExecuteDecreaseModPriority);
+
             _eventAggregator.GetEvent<RequestedLaunchEvent>().Subscribe(OnRequestLaunch);
+
+            Application.Current.Exit += (sender, args) => SaveModCollection();
+        }
+       
+
+        private void ExecuteIncreaseModPriority()
+        {
+            if(SelectedMod == null) return;
+            var modCollection = SelectedModCollection.Value;
+            if (modCollection.First() == SelectedMod) return;
+
+            var modIndex = modCollection.IndexOf(SelectedMod);
+            modCollection.Move(modIndex, --modIndex);
+        }
+
+        private void ExecuteDecreaseModPriority()
+        {
+            if (SelectedMod == null) return;
+            var modCollection = SelectedModCollection.Value;
+            if (modCollection.Last() == SelectedMod) return;
+
+            var modIndex = modCollection.IndexOf(SelectedMod);
+            modCollection.Move(modIndex, ++modIndex);
         }
         #endregion
 
@@ -71,13 +115,16 @@ namespace NMSM.ModManager.ViewModels
             {
                 collectionName = string.IsNullOrEmpty(name) ? "Collection #" + ++_collectionNextIndex : name;
             } while (ModCollections.ContainsKey(collectionName));
-            ModCollections.Add(collectionName, _modFiles.ConvertAll(file => new Mod(file)));
+            ModCollections.Add(collectionName, new ObservableCollection<Mod>(_modFiles.ConvertAll(file => new Mod(file))));
         }
 
         private void ExecuteRemoveModuleCollection()
         {
             if (string.IsNullOrEmpty(SelectedModCollection.Key)) return;
             ModCollections.Remove(SelectedModCollection.Key);
+            // Todo: select next item
+            if (ModCollections.Any())
+                SelectedModCollection = ModCollections.First();
         }
         #endregion
 
@@ -93,9 +140,11 @@ namespace NMSM.ModManager.ViewModels
             var disposabbleModFiles = pakFiles.Where(file => Regex.IsMatch(file.Name, pattern)).ToList();
 
             // Copy Mods To gamefolder if not yet present
-            foreach (var mod in SelectedModCollection.Value.Where(m => m.Enabled))
+            var modEnabled = SelectedModCollection.Value.Where(m => m.Enabled).ToList();
+            var priority = modEnabled.Count();
+            foreach (var mod in modEnabled)
             {
-                var modName = "_" + mod.DisplayName + ".pak";
+                var modName = "_" + priority-- + "_" + mod.DisplayName + ".pak";
                 var modFile = disposabbleModFiles.FirstOrDefault(mf => mf.Name.Equals(modName));
                 if (modFile != null)
                     disposabbleModFiles.Remove(modFile);
@@ -110,10 +159,29 @@ namespace NMSM.ModManager.ViewModels
             }
         }
 
-        private void LoadModList()
+        private void LoadModFiles()
         {
             // Look into mod folder for pak
             _modFiles = new List<FileInfo>(_context.ModsDirectory.GetFiles("*.pak"));
+        }
+
+        private void SaveModCollection()
+        {
+            var collections = JsonConvert.SerializeObject(ModCollections, new JsonSerializerSettings() { DateFormatHandling = DateFormatHandling.MicrosoftDateFormat });
+            File.WriteAllText(_context.SettingsDirectory.FullName + @"\userCollections.json", collections);
+        }
+
+        private void LoadModCollections()
+        {
+            try
+            {
+                var collections = File.ReadAllText(_context.SettingsDirectory.FullName + @"\userCollections.json");
+                ModCollections = JsonConvert.DeserializeObject<ObservableDictionary<string, ObservableCollection<Mod>>>(collections);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Error loading collections\n" + e.Message);
+            }
         }
         #endregion
     }

@@ -2,7 +2,16 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:model="clr-namespace:NMSM.ProfileManager.Model">
     <DataTemplate x:Key="PlayerProfileTemplate" DataType="{x:Type model:PlayerProfile}">
-        <TextBlock Text="{Binding Name}" />
+        <StackPanel Orientation="Horizontal">
+            <TextBox Name="ProfileName" Text="{Binding Name}" />
+            <CheckBox Name="EditButton" IsChecked="{Binding ElementName=ProfileName, Path=IsReadOnly}">
+                <!--<ToggleButton.Triggers>
+                    <DataTrigger Binding="{Binding ElementName=ProfileName, Path=IsReadOnly}" Value="False">
+                        <Setter TargetName="EditButton" Property="Visibility" Value="Hidden" />
+                    </DataTrigger>
+                </ToggleButton.Triggers>-->
+            </CheckBox>
+        </StackPanel>
     </DataTemplate>
     
 </ResourceDictionary>

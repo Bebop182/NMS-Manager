@@ -23,6 +23,7 @@
         <Setter Property="BorderThickness" Value="0" />
         <Setter Property="Background" Value="#f6f6f6" />
         <Setter Property="Margin" Value="1" />
+        <Setter Property="Focusable" Value="True" />
     </Style>
 
     <Style x:Key="{x:Type ListBoxItem}" TargetType="ListBoxItem">
@@ -32,5 +33,45 @@
     <Style x:Key="ContentTitle" TargetType="Control">
         <Setter Property="HorizontalAlignment" Value="Center" />
         <Setter Property="FontSize" Value="18" />
+    </Style>
+    
+    <Style x:Key="{x:Type TextBox}" TargetType="TextBox" BasedOn="{StaticResource {x:Type TextBox}}">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="BorderBrush" Value="Transparent" />
+        <Setter Property="IsReadOnly" Value="True" />
+        <Style.Triggers>
+            <!--<EventTrigger RoutedEvent="MouseDoubleClick">
+                <EventTrigger.Actions>
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <BooleanAnimationUsingKeyFrames Duration="0" Storyboard.TargetProperty="IsReadOnly" >
+                                <BooleanAnimationUsingKeyFrames.KeyFrames>
+                                    <DiscreteBooleanKeyFrame Value="False" KeyTime="0" />
+                                </BooleanAnimationUsingKeyFrames.KeyFrames>
+                            </BooleanAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger.Actions>
+            </EventTrigger>
+            
+            <EventTrigger RoutedEvent="LostFocus">
+                <EventTrigger.Actions>
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <BooleanAnimationUsingKeyFrames Duration="0" Storyboard.TargetProperty="IsReadOnly" >
+                                <BooleanAnimationUsingKeyFrames.KeyFrames>
+                                    <DiscreteBooleanKeyFrame Value="True" KeyTime="0" />
+                                </BooleanAnimationUsingKeyFrames.KeyFrames>
+                            </BooleanAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger.Actions>
+            </EventTrigger>-->
+
+            <Trigger Property="IsReadOnly" Value="False">
+                <Setter Property="Background" Value="White" />
+                <Setter Property="BorderBrush" Value="CornflowerBlue" />
+            </Trigger>
+        </Style.Triggers>
     </Style>
 </ResourceDictionary>

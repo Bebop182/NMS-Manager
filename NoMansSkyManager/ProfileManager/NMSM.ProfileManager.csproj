@@ -113,9 +113,9 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\NoMansSkyManager.Infrastructure\NoMansSkyManager.Infrastructure.csproj">
+    <ProjectReference Include="..\NoMansSkyManager.Infrastructure\NMSM.Infrastructure.csproj">
       <Project>{9cb8a988-b202-4979-a421-a2f6ae8fa298}</Project>
-      <Name>NoMansSkyManager.Infrastructure</Name>
+      <Name>NMSM.Infrastructure</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

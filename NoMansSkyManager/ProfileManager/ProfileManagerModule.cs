@@ -1,7 +1,7 @@
 ﻿using System.Windows;
+using NMSM.Infrastructure;
 using NMSM.ProfileManager.Properties;
 using NMSM.ProfileManager.Views;
-using NoMansSkyManager.Infrastructure;
 using Prism.Events;
 using Prism.Modularity;
 

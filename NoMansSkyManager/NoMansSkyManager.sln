@@ -11,7 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NMSM.ProfileManager", "Prof
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Commons", "Commons", "{6C69C5A7-8959-4E10-BFCE-6C3E73E63141}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NoMansSkyManager.Infrastructure", "NoMansSkyManager.Infrastructure\NoMansSkyManager.Infrastructure.csproj", "{9CB8A988-B202-4979-A421-A2F6AE8FA298}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NMSM.Infrastructure", "NoMansSkyManager.Infrastructure\NMSM.Infrastructure.csproj", "{9CB8A988-B202-4979-A421-A2F6AE8FA298}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NMSM.ModManager", "ModManager\NMSM.ModManager.csproj", "{B413758C-540B-4602-B1F3-174688823A7C}"
 EndProject

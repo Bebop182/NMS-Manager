@@ -1,6 +1,5 @@
-﻿using System.Windows;
+﻿using NMSM.Infrastructure;
 using NMSM.ModManager.Views;
-using NoMansSkyManager.Infrastructure;
 using Prism.Events;
 using Prism.Modularity;
 
@@ -22,10 +21,6 @@ namespace NMSM.ModManager {
             _eventAggregator.GetEvent<ModuleLoadedEvent>().Publish(moduleEvent);
 
             //Application.Current.Exit += OnExit;
-        }
-
-        private void OnExit(object sender, ExitEventArgs exitEventArgs) {
-
         }
     }
 }

@@ -1,7 +1,7 @@
 ﻿using System;
 using Prism.Events;
 
-namespace NoMansSkyManager.Infrastructure
+namespace NMSM.Infrastructure
 {
     public class ModuleLoadedEvent : PubSubEvent<ModuleLoadedEvent> {
         public Type ModuleType { get; set; }

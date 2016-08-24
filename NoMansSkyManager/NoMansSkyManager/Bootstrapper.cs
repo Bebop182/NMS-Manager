@@ -2,11 +2,11 @@
 using System.IO;
 using System.Windows;
 using Microsoft.Practices.Unity;
+using NMSM.Infrastructure;
 using NMSM.ModManager;
 using NMSM.ProfileManager;
 using NMSM.Properties;
 using NMSM.Views;
-using NoMansSkyManager.Infrastructure;
 using Prism.Modularity;
 using Prism.Unity;
 

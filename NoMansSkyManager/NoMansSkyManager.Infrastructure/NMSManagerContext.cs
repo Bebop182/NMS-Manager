@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 
-namespace NoMansSkyManager.Infrastructure {
+namespace NMSM.Infrastructure {
     public class NMSManagerContext {
         public DirectoryInfo ProfilesDirectory { get; }
         public DirectoryInfo ModsDirectory { get; }

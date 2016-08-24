@@ -1,6 +1,6 @@
 ﻿using System.Runtime.InteropServices;
 
-namespace NoMansSkyManager.Infrastructure.Helpers {
+namespace NMSM.Infrastructure.Helpers {
     public class SymLink {
         [DllImport("kernel32.dll")]
         private static extern bool CreateSymbolicLink(string lpSymlinkFileName, string lpTargetFileName, int dwFlags);

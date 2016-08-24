@@ -2,9 +2,9 @@
 using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using NMSM.Infrastructure;
 using NMSM.ModManager;
 using NMSM.ProfileManager;
-using NoMansSkyManager.Infrastructure;
 using Prism.Commands;
 using Prism.Events;
 using Prism.Mvvm;

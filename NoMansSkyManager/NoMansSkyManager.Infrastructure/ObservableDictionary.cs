@@ -35,7 +35,7 @@ using System.ComponentModel;
 using System.Runtime.InteropServices;
 using System.Runtime.Serialization;
 
-namespace NoMansSkyManager.Infrastructure
+namespace NMSM.Infrastructure
 {
     [Serializable]
     public class ObservableDictionary<TKey, TValue> :

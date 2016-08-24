@@ -7,8 +7,8 @@
     <ProjectGuid>{9CB8A988-B202-4979-A421-A2F6AE8FA298}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>NoMansSkyManager.Infrastructure</RootNamespace>
-    <AssemblyName>NoMansSkyManager.Infrastructure</AssemblyName>
+    <RootNamespace>NMSM.Infrastructure</RootNamespace>
+    <AssemblyName>NMSM.Infrastructure</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

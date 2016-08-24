@@ -120,9 +120,9 @@
       <Project>{2D53BC59-5999-4804-8BE9-539377617320}</Project>
       <Name>NMSM.ControlLibrary</Name>
     </ProjectReference>
-    <ProjectReference Include="..\NoMansSkyManager.Infrastructure\NoMansSkyManager.Infrastructure.csproj">
+    <ProjectReference Include="..\NoMansSkyManager.Infrastructure\NMSM.Infrastructure.csproj">
       <Project>{9cb8a988-b202-4979-a421-a2f6ae8fa298}</Project>
-      <Name>NoMansSkyManager.Infrastructure</Name>
+      <Name>NMSM.Infrastructure</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
